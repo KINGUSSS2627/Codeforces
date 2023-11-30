@@ -17,12 +17,19 @@ void solve()
     int remStep = accumulate(v.begin(), v.end(), (int)0);
 
     int steps = 0, tmp = 0, ans = remStep;
+
     for (int i = 0; i < n; i++)
     {
         remStep -= v[i];
         steps += v[i];
-        tmp = max((int)0, (steps - remStep + 1) / 2);
+
+        if (steps > remStep)
+        {
+            tmp = (steps - remStep + 1) / 2;
+        }
+
         ans = min(ans, remStep + tmp + i + 1);
+        tmp = 0;
     }
 
     cout << ans << endl;
